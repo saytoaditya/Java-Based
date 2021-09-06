@@ -2,50 +2,62 @@ import java.util.Scanner;
 import java.util.*;
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime; 
-class Parking
+class Booking{
+    String vehicleType;
+    int status;
+    int fee;
+    Booking(int status,String vehicleType,int fee)
+    {
+        this.status=status; 
+        this.vehicleType=vehicleType;
+        this.fee=fee;   
+    }
+}
+public class ParkingLot
 {
     public static void main(String[] args)
     {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("welcome to parking system");
+        String[] parkingVehicleType = {"2v", "4v", "hv"};
+        int[] parkingVehicleLength=new int[parkingVehicleType.length];
+        List<Booking> vehicleList=new ArrayList<Booking>();
+        for(int i=0;i<parkingVehicleType.length;i++)
+        {
+            System.out.println("Enter available parking for " +parkingVehicleType[i]);
+            parkingVehicleLength[i]=scan.nextInt();
+        }
+        for(int i=0;i<parkingVehicleLength.length;i++)
+        {
+            int status=0;
+            System.out.println("Enter  parking fee for " +parkingVehicleType[i]);
+            int fee=scan.nextInt();
+            for(int j=0;j<parkingVehicleLength[i];j++)
+            {
+                vehicleList.add(new Booking(status,parkingVehicleType[i],fee));
+            }
+        }
         int temp=1;
-        Scanner scan=new Scanner(System.in);
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.println("Welcome In parking Lot System");
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.println("Enter available car parking slot");
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        int carSlot=scan.nextInt();
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.println("Enter available bike parking slot");
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        int bikeSlot=scan.nextInt();
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.println("Enter available heavy Vehicle parking slot");
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        int heavySlot=scan.nextInt();
-        int car[]=new int[carSlot];     // to store car parking
-        int bike[]=new int[bikeSlot];   // to store bike parking
-        int heavy[]=new int[heavySlot]; 
-        StringBuilder carTicket=new StringBuilder(carSlot);     // to store carTicket 
-        StringBuilder bikeTicket=new StringBuilder(bikeSlot);  // to store bikeTicket 
-        StringBuilder heavyTicket=new StringBuilder(heavySlot);   // to store heavyTicket 
         while(temp==1)
         {
             System.out.println("1 Slot Availablity Of Vehicle");
             System.out.println("2 parking slot booking");
-            System.out.println("3 removee parking ");
+            System.out.println("3 remove parking ");
             System.out.println("4 exit ");
             int option=scan.nextInt();
-            switch(option) 
-            { 
+            switch(option)
+            {
                 case 1:
-                        showAvailableParking(car,bike,heavy);
+                        displayList(vehicleList);
                         break;
                 case 2:
-                        addParking(car,bike,heavy);
-                        //ticket();
+                        
+                        
+                        addParking(vehicleList,parkingVehicleType);
+                        //ticket(); 
                         break;
                 case 3:
-                        emptyParking(car,bike,heavy);
+                        removeParking(vehicleList,parkingVehicleType);
                         break;
                 case 4:
                         temp=0;
@@ -53,174 +65,76 @@ class Parking
             }
         }
     }
-    public static void showAvailableParking( int car[],int bike[],int heavy[])
-    {
-        System.out.println(" car parking available slot no" );
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        for(int i=0;i<car.length;i++)
-        {
-            if(car[i]==0)
-            System.out.print(+i+ " ");
-        }
-        System.out.println("");
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.println(" bike parking available slot no" );
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        for(int j=0;j<bike.length;j++)
-        {
-            if(bike[j]==0)
-            System.out.print(+j+ " ");
-        }
-        System.out.println("");
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.println(" heavy parking available slot no" );
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        for(int k=0;k<heavy.length;k++)
-        {
-            if(heavy[k]==0)
-            System.out.print(+k+ " ");
-        }
-        System.out.println("");
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-    }
-    public static void addParking(int car[],int bike[],int heavy[])
-    {
-        Scanner scan =new Scanner(System.in); 
-        System.out.println("For Which Vehicle You want to add praking");
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.println("1 car");
-        System.out.println("2 bike");
-        System.out.println("3 heavy");
-        int choice=scan.nextInt();
-        switch(choice)
-        {
-            case 1: 
 
-                    
-                    java.util.Date inTime=new java.util.Date();   
-                    int availableParking=0;
-                    for(int i=0;i<car.length;i++)
-                    {
-                         if(car[i]==0)
-                        {
-                            System.out.println("Enter  number of car");
-                            int carvehicleNo=scan.nextInt(); 
-                            availableParking=i;
-                            car[i]=1;
-                            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                            System.out.println("here is your ticket detail");
-                            System.out.println("Vehile Number - "+carvehicleNo);
-                            System.out.println("In Time - "+inTime);
-                            System.out.println("Parking Number - " +availableParking);
-                            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                            break;
-                        }
-                    }
-                    break;
-            case 2:  
-                    System.out.println("Enter  number of bike");
-                    int bikevehicleNo=scan.nextInt(); 
-                    java.util.Date bikeinTime=new java.util.Date();  
-                    ///System.out.println(inTime); 
-                    int bikeavailableParking=0;
-                    for(int i=0;i<bike.length;i++)
-                    {
-                        
-                        if(bike[i]==0)
-                        {
-                            bike[i]=1;
-                            bikeavailableParking=i;
-                            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                            System.out.println("here is your ticket detail");
-                            System.out.println("Vehile Number- "+bikevehicleNo);
-                            System.out.println("In Time -"+bikeinTime);
-                            System.out.println("Parking Number -" +bikeavailableParking);
-                            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                            break;
-                        }
-                    }
-                    
-                    break;
-            case 3:
-                    System.out.println("Enter  number of heavy");
-                    int heavyVehicleNo=scan.nextInt(); 
-                    java.util.Date heavyinTime=new java.util.Date();  
-                    ///System.out.println(inTime); 
-                    int heavyAvailableParking=0;
-                    for(int i=0;i<heavy.length;i++)
-                    {
-                        
-                        if(heavy[i]==0)
-                        {
-                            heavy[i]=1;
-                            heavyAvailableParking=i;
-                            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                            System.out.println("here is your ticket detail");
-                            System.out.println("Vehile Number- "+heavyVehicleNo);
-                            System.out.println("In Time -"+heavyinTime);
-                            System.out.println("Parking Number -" +heavyAvailableParking);
-                            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                            break;
-                        }
-                    }
-                   
-                    break;
-        }  
-    }
-    public static void emptyParking(int car[],int bike[],int heavy[])
-    {
-        Scanner scan =new Scanner(System.in); 
-        System.out.println("For Which Vehicle You want to empty praking");
-        System.out.println("1 car");
-        System.out.println("2 bike");
-        System.out.println("3 heavy");
-        int choice=scan.nextInt();
-        switch(choice)
+    public static void displayList(List<Booking> vehicleList1)
         {
-            case 1: 
-                    System.out.println("Which car is Leaving");
-                    int cardetail=scan.nextInt();
-                    for(int i=0;i<car.length;i++)
+            System.out.println("status vehicleType fee");
+            for(Booking vehicleData:vehicleList1)
+                {
+            System.out.println(vehicleData.status+ " " +vehicleData.vehicleType+ " " +vehicleData.fee);
+             }
+        }
+     public static void addParking(List<Booking> vehicleList1,String[] parkingVehicleType1)
+        {
+                Scanner scan=new Scanner(System.in);
+                for(int i=0;i<parkingVehicleType1.length;i++)
+                {
+                    System.out.println(+i+ " "+parkingVehicleType1[i]);
+                }
+                System.out.println("choose vehicle type to park");
+                int selection =scan.nextInt();
+                System.out.println("enter vehicle number");
+                scan.nextLine();
+                String vNumber=scan.nextLine();
+                int parked=0;
+                int slotNumber=0;
+                for(Booking vehicleData:vehicleList1)
+                {
+                    if(vehicleData.vehicleType==parkingVehicleType1[selection])
                     {
-                        if(i==cardetail)
-                        {
-                            car[i]=0;
-                            System.out.println("Paarking no "+i+ " is available now");
-                        }
-                    }
-                    break;
-            case 2:  
-                    System.out.println("Which bike is Leaving");
-                    int bikedetail=scan.nextInt();
-                    for(int j=0;j<bike.length;j++)
+                        if(vehicleData.status==0)
+                            {
+                                 parked=1;
+                                 slotNumber= vehicleList1.indexOf(vehicleData);
+                                vehicleList1.set(vehicleList1.indexOf(vehicleData),new Booking(1,parkingVehicleType1[selection],vehicleList1.get(vehicleList1.indexOf(vehicleData)).fee));
+                            }
+                            break;
+                    } 
+                }
+                if(parked==0)
+                {
+                    System.out.println("slot is not available");
+                }
+                else
+                {
+                    System.out.println("-----------------TICKET---------------");
+                    System.out.println("VEHICLE NUMBER "+ vNumber);
+                    System.out.println("SLOT NUMBER "+slotNumber);
+
+                    System.out.println("------------------------------------");
+                }
+        }
+        public static void removeParking(List<Booking> vehicleList1,String[] parkingVehicleType1)
+        {
+            Scanner scan=new Scanner(System.in);
+            for(int i=0;i<parkingVehicleType1.length;i++)
+            {
+                System.out.println(+i+ " "+parkingVehicleType1[i]);
+            }
+            System.out.println("choose vehicle type to unpark");
+            int selection =scan.nextInt();
+            for(Booking vehicleData:vehicleList1)
+                {
+                    if(vehicleData.vehicleType==parkingVehicleType1[selection])
                     {
-                        if(bike[bikedetail]==0)
-                        {
-                            System.out.println("parking is already empty");
-                        }
-                        if(j==bikedetail)
-                        {
-                            bike[j]=0;
-                            System.out.println("Paarking no "+j+ " is available now");
-                        }
-                    }
-                    break;
-            case 3:
-                    System.out.println("Which heavy Vehicle is Leaving");
-                    int heavydetail=scan.nextInt();
-                    for(int k=0;k<heavy.length;k++)
-                    {
-                        if(heavy[heavydetail]==0)
-                        {
-                            System.out.println("parking is already empty");
-                        }
-                        if(k==heavydetail)
-                        {
-                            heavy[k]=0;
-                            System.out.println("Paarking no "+k+ " is available now");
-                        }
-                    }
-                    break;
-        }  
-    }
+                        if(vehicleData.status==1)
+                            {
+                                 //slotNumber= vehicleList1.indexOf(vehicleData);
+                                vehicleList1.set(vehicleList1.indexOf(vehicleData),new Booking(0,parkingVehicleType1[selection],vehicleList1.get(vehicleList1.indexOf(vehicleData)).fee));
+                            }
+                            break;
+                    } 
+                }
+                System.out.println("vehicle unparked");
+        }
 }
