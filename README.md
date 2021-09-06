@@ -27,3 +27,16 @@ menu.
 3. AC 1 is “Off
 # console demo
 ![image](https://user-images.githubusercontent.com/37133049/130567887-4b4ce7c0-b956-45d8-9a51-04d8a05b409f.png)
+--------------------------------------------------------------------------------------------------------------------
+# Parking Lot
+![image](https://user-images.githubusercontent.com/37133049/132163506-b6cc17e3-094a-470a-b256-a3a12bf2c003.png)
+# console demo
+![image](https://user-images.githubusercontent.com/37133049/132163568-915ee82f-4bd0-43fc-8fae-45707490e0a7.png)
+# Check Slot Availablity 
+![image](https://user-images.githubusercontent.com/37133049/132163612-aee3b485-28e3-4779-8f42-d1e360f67106.png)
+# park vehicle 
+![image](https://user-images.githubusercontent.com/37133049/132163651-a01bb7a3-8330-4166-bf64-4bc50ee185e3.png)
+# unpark vehicle 
+![image](https://user-images.githubusercontent.com/37133049/132163695-741aa586-abf3-4b5d-b242-6865aeff82a4.png)
+
+
