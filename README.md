@@ -1,4 +1,4 @@
-# Switchboard simulation
+# 1 Switchboard simulation
 A switch board has a set of buttons which are used to control the state of appliances and switch them
 `on` or `off`.
 Design a switch board simulation that is used to control electric appliances in a room. The supported
@@ -28,7 +28,7 @@ menu.
 # console demo
 ![image](https://user-images.githubusercontent.com/37133049/130567887-4b4ce7c0-b956-45d8-9a51-04d8a05b409f.png)
 --------------------------------------------------------------------------------------------------------------------
-# Parking Lot
+# 2 Parking Lot
 ![image](https://user-images.githubusercontent.com/37133049/132163506-b6cc17e3-094a-470a-b256-a3a12bf2c003.png)
 # console demo
 ![image](https://user-images.githubusercontent.com/37133049/132163568-915ee82f-4bd0-43fc-8fae-45707490e0a7.png)
